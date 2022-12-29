@@ -41,7 +41,7 @@ const CategoryPost = ({ data }) => {
 export default CategoryPost
 
 export async function getStaticProps({ params }) {
-  const post = await fetch(`http://localhost:1337/api/categories/${params.id}?populate=deep`)
+  const post = await fetch(`http://localhost:1338/api/categories/${params.id}?populate=deep`)
   const posts = await post.json()
   return {
     props: {
@@ -52,7 +52,7 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-  const posts = await fetch('http://localhost:1337/api/categories?populate=deep')
+  const posts = await fetch('http://localhost:1338/api/categories?populate=deep')
   const res = await posts.json()
   const paths = res.data.map((post) => {
     return {
