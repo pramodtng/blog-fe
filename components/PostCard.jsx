@@ -22,13 +22,14 @@ const PostCard = ({ post }) => {
       <div className='block lg:flex text-center items-center justify-start mb-4 w-full'>
         <div className='flex items-center justify-center lg:mb-0 w-full lg:w-auto mr-8'>
           <Image
+            unoptimized
             src={`${process.env.NEXT_PUBLIC_STRAPI_API + post.attributes.writer.data.attributes.image.data.attributes.url}`}
-            alt='author-imag'
-            width={12}
-            height = {12}
-            className='align-middle rounded-full h-12 w-12'
+            alt="image-description"
+            height={40}
+            width={40}
+            className='align-middle drop-shadow-lg rounded-full'
           />
-          <p className='inline align-middle text-gray-700 ml-2 text-lg'> {post.attributes.writer.data.attributes.name} </p>
+          <h4 className='inline align-middle text-gray-700 ml-2 text-lg'> {post.attributes.writer.data.attributes.name} </h4>
         </div>
         <div className='font-medium text-gray-700'>
           <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 inline mr-2 text-pink-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">

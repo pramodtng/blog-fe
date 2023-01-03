@@ -3,6 +3,8 @@ const nextConfig = {
   reactStrictMode: true,
   images: {
     domains: ['localhost'],
+    path: '/_next/image',
+    loader: 'default',
   }
 }
 

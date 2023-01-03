@@ -8,8 +8,8 @@ const Posts = ({ post }) => {
   const disqusShortname = "BlogSpot"
   const disqusConfig = {
     url: `https://tashiblogspot.disqus.com/post/${post.id}`,
-    identifier: post.id,
-    title: post.attributes.title
+    identifier: `${post.id}`,
+    title: `${post.attributes.title}`
   }
   const router = useRouter()
   if (router.isFallback) {
@@ -65,6 +65,6 @@ export async function getStaticPaths() {
   })
   return {
     paths,
-    fallback: true
+    fallback: false
   }
 }

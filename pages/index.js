@@ -36,6 +36,7 @@ export async function getStaticProps() {
   return {
     props: {
       posts
-    }
+    },
   }
 }
+// 10.70.91.21

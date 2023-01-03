@@ -41,18 +41,18 @@ const CategoryPost = ({ data }) => {
 export default CategoryPost
 
 export async function getStaticProps({ params }) {
-  const post = await fetch(`http://localhost:1338/api/categories/${params.id}?populate=deep`)
+  const post = await fetch(`https://blogspotbackend.tashicell.com/api/categories/${params.id}?populate=deep`)
   const posts = await post.json()
   return {
     props: {
       data: posts.data.attributes.posts
     },
-    revalidate: 60
+    revalidate: 1
   }
 }
 
 export async function getStaticPaths() {
-  const posts = await fetch('http://localhost:1338/api/categories?populate=deep')
+  const posts = await fetch('https://blogspotbackend.tashicell.com/api/categories?populate=deep')
   const res = await posts.json()
   const paths = res.data.map((post) => {
     return {
@@ -61,6 +61,6 @@ export async function getStaticPaths() {
   })
   return {
     paths,
-    fallback: true
+    fallback: false
   }
 }

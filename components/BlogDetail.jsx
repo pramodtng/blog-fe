@@ -5,6 +5,8 @@ import Image from 'next/image'
 import moment from 'moment/moment'
 import ReactMarkdown from 'react-markdown'
 import rehypeRaw from 'rehype-raw'
+import gfm from 'remark-gfm';
+import remarkGfm from 'remark-gfm'
 
 const BlogDetail = ({ post }) => {
   return (
@@ -16,11 +18,12 @@ const BlogDetail = ({ post }) => {
         <div className='flex items-center mb-4 w-full'>
           <div className='flex items-center mb-4 lg:mb-0 w-full lg:w-auto mr-8'>
             <Image
-              src= {`${process.env.NEXT_PUBLIC_STRAPI_API + post.attributes.writer.data.attributes.image.data.attributes.url}`}
-              alt='author-imag'
-              height={60}
-              width={60}
-              className='align-middle rounded-full'
+              unoptimized
+              src={`${process.env.NEXT_PUBLIC_STRAPI_API + post.attributes.writer.data.attributes.image.data.attributes.url}`}
+              alt="image-description"
+              height={30}
+              width={30}
+              className='align-middle drop-shadow-lg rounded-full'
             />
             <p className='inline align-middle text-gray-700 ml-2 text-lg'> {post.attributes.writer.data.attributes.name} </p>
           </div>
@@ -33,7 +36,14 @@ const BlogDetail = ({ post }) => {
         </div>
         <p className='mb-8 text-3xl font-semibold text-black'> {post.attributes.title} </p>
         <div className='text-black text-1xl'>
-          <ReactMarkdown children= {post.attributes.content} rehypePlugins={[rehypeRaw]} />
+          <ReactMarkdown
+            children={post.attributes.content}
+            rehypePlugins={[rehypeRaw]}
+            remarkPlugins={[gfm]}
+            transformImageUri={uri =>
+              uri.startsWith("http") ? uri : `${process.env.NEXT_PUBLIC_STRAPI_API}${uri}`
+            }
+          />
         </div>
       </div>
     </div>

@@ -8,8 +8,8 @@ const Author = ({ author }) => {
         <Image
           src={`${process.env.NEXT_PUBLIC_STRAPI_API + author.attributes.writer.data.attributes.image.data.attributes.url}`}
           alt='author-image'
-          height={50}
-          width= {50}
+          height={40}
+          width= {40}
           className='inline align-middle rounded-full bg-black  border-black'
         />
         <h3 className='text-black'> {author.attributes.writer.data.attributes.name} </h3>
