@@ -44,7 +44,7 @@ const Posts = ({ post }) => {
 export default Posts
 
 export async function getStaticProps({ params }) {
-  const posts = await fetch(`http://localhost:1338/api/posts/${params.id}?populate=deep`)
+  const posts = await fetch(`https://blogspotbackend.tashicell.com/api/posts/${params.id}?populate=deep`)
   const res = await posts.json()
   return {
     props: {
@@ -56,7 +56,7 @@ export async function getStaticProps({ params }) {
 
 
 export async function getStaticPaths() {
-  const posts = await fetch('http://localhost:1338/api/posts?populate=deep')
+  const posts = await fetch('https://blogspotbackend.tashicell.com/api/posts?populate=deep')
   const res = await posts.json()
   const paths = res.data.map((post) => {
     return {
