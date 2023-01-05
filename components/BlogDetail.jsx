@@ -8,6 +8,15 @@ import rehypeRaw from 'rehype-raw'
 import gfm from 'remark-gfm';
 import remarkGfm from 'remark-gfm'
 
+
+function LinkRenderer(props) {
+  return (
+    <a href={props.href} target="_blank" rel="noreferrer">
+      {props.children}
+    </a>
+  );
+}
+
 const BlogDetail = ({ post }) => {
   return (
     <div className='bg-white shadow-lg rounded-lg lg:p-8 pb-12 mb-8'>
@@ -37,6 +46,7 @@ const BlogDetail = ({ post }) => {
         <p className='mb-8 text-3xl font-semibold text-black'> {post.attributes.title} </p>
         <div className='text-black text-1xl'>
           <ReactMarkdown
+            components={{ a: LinkRenderer }}
             children={post.attributes.content}
             rehypePlugins={[rehypeRaw]}
             remarkPlugins={[gfm]}
