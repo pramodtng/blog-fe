@@ -2,6 +2,7 @@ import React from 'react'
 import { PostCard, Categories, Loader } from '../../components';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
+import Head from 'next/head';
 
 
 
@@ -12,29 +13,35 @@ const CategoryPost = ({ data }) => {
     return <Loader />;
   }
   return (
-    <div className='container mx-auto px-10 mb-8'>
-      <div className='grid grid-cols-1 lg:grid-cols-12 gap-12'>
-        <div className='col-span-1 lg:col-span-8'>
-          {data.data.length > 0 ? data.data.map((post) => (
-            <PostCard key={post.id} post={post} />
-          )) :
-            <div className='bg-white shadow-lg rounded-lg p-0 lg:p-8 pb-12 mb-8 flex items-center'>
-              <Image
-                src='/404.gif'
-                alt='not-found'
-                height={400}
-                width={400} />
-              <h2 className='text-2xl'>No Posts available!</h2>
+    <>
+    <Head>
+      <title>Categories</title>
+    </Head>
+      <div className='container mx-auto px-10 mb-8'>
+        <div className='grid grid-cols-1 lg:grid-cols-12 gap-12'>
+          <div className='col-span-1 lg:col-span-8'>
+            {data.data.length > 0 ? data.data.map((post) => (
+              <PostCard key={post.id} post={post} />
+            )) :
+              <div className='bg-white shadow-lg rounded-lg p-0 lg:p-8 pb-12 mb-8 flex items-center'>
+                <Image
+                  src='/404.gif'
+                  alt='not-found'
+                  height={400}
+                  width={400} />
+                <h2 className='text-2xl'>No Posts available!</h2>
+              </div>
+            }
+          </div>
+          <div className="col-span-1 lg:col-span-4">
+            <div className="relative lg:sticky top-8">
+              <Categories />
             </div>
-          }
-        </div>
-        <div className="col-span-1 lg:col-span-4">
-          <div className="relative lg:sticky top-8">
-            <Categories />
           </div>
         </div>
       </div>
-    </div>
+    </>
+
   )
 }
 
