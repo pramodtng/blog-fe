@@ -32,4 +32,3 @@ const FeaturedPostCard = ({ post }) => {
 }
 
 export default FeaturedPostCard
-      // <Link href={`/post/${post.id}`}><span className='cursor-pointer absolute w-full h-full"' /></Link>
